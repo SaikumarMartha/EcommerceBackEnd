@@ -1,0 +1,8 @@
+com\Dao\UserDao.class
+com\DaoImpl\CategoryDaoImpl.class
+com\DaoImpl\UserDaoImpl.class
+project\projectbackend\App.class
+com\model\User.class
+com\model\Category.class
+com\Dao\CategoryDao.class
+com\hibernateConfig\DataBaseConfig.class
