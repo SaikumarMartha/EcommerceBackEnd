@@ -1,29 +1,31 @@
 package com.DaoImpl;
 
 import java.util.List;
-
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+
 import com.Dao.CategoryDao;
 import com.model.Category;
-@Repository("CategoryDao")
+@Repository("categoryDao")
 public  class CategoryDaoImpl implements CategoryDao
 {
 @Autowired
 SessionFactory sessionFactory;
 
 @Transactional
-@Autowired
 public boolean addCategory(Category category)
 {
 	  try
       {
-      sessionFactory.getCurrentSession().save(category);
+		  Session session = sessionFactory.getCurrentSession();
+		  System.out.println("Inside saving object");
+      session.save(category);
+
       return true;
       }
       catch(Exception e)
@@ -31,16 +33,23 @@ public boolean addCategory(Category category)
 return false;	
 }
 	  }
-@Autowired
+
+
+@Transactional
  public List<Category> retrieveCategory()
  {
-	 Session session=sessionFactory.openSession();
-     Query query=session.createQuery("from Category");
-     List<Category> listCategory=query.list();
-     session.close();
-     return listCategory;
+	
+	
+	Session session=sessionFactory.openSession();
+	@SuppressWarnings("rawtypes")
+	Query query=session.createQuery("from Category");
+	@SuppressWarnings("deprecation")
+	List<Category> listCategory=query.list();
+	session.close();
+	return listCategory;
  }
-@Autowired
+ @Transactional
+ 
  public boolean deleteCategory(Category category)
  {
 	 try
@@ -54,6 +63,8 @@ return false;
      return false;
      }
  }
+ @Transactional
+ 
 public Category getCategory(int catId)
 {
 	 Session session=sessionFactory.openSession();
@@ -61,10 +72,13 @@ public Category getCategory(int catId)
      session.close();
      return category;
 }
+@Transactional
+
 public boolean updateCategory(Category category)
 {
 	 try
      {
+		 
      sessionFactory.getCurrentSession().saveOrUpdate(category);
      return true;
      }

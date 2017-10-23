@@ -7,7 +7,9 @@ import javax.persistence.*;
 @Table
 public class Category 
 {
+	
 	@Id
+	@GeneratedValue
 	int catId;
 	
 	String catName,catDesc;

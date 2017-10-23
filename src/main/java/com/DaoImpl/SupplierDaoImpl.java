@@ -2,42 +2,54 @@ package com.DaoImpl;
 
 import java.util.List;
 
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.Dao.SupplierDao;
 import com.model.Category;
 import com.model.Supplier;
 
+
+
+
+
+@Repository("supplierDao")
 public class SupplierDaoImpl implements SupplierDao
 {
 	@Autowired
 	SessionFactory sessionFactory;
-
-	
 	@Transactional
-	@Override
 	public boolean addSupplier(Supplier supplier) {
-		  try
+		 try
 	      {
-	      sessionFactory.getCurrentSession().save(supplier);
+			  Session session = sessionFactory.getCurrentSession();
+			  System.out.println("Inside saving object");
+	      session.save(supplier);
+
 	      return true;
 	      }
 	      catch(Exception e)
 	      {
-	return false;	
-	}
-	}
-
-	@Override
-	public List<Supplier> retrieveSupplier() {
-		// TODO Auto-generated method stub
-		return null;
+		return false;
+		}
 	}
 
-	@Override
+	public List<Supplier> retrieveSupplier()
+	{
+
+		Session session=sessionFactory.openSession();
+		@SuppressWarnings("rawtypes")
+		Query query=session.createQuery("from Supplier");
+		@SuppressWarnings("deprecation")
+		List<Supplier> listSupplier=query.list();
+		session.close();
+		return listSupplier;
+	}
+@Transactional
 	public boolean deleteSupplier(Supplier supplier)
 	{
 		 try
@@ -48,31 +60,33 @@ public class SupplierDaoImpl implements SupplierDao
 	     catch(Exception e)
 	     {
 	     System.out.println("Exception Arised:"+e);  
-	     return false;
-	     }
+		return false;
+		}
 	}
-
-	@Override
-	public Supplier getSupplier(int supplierId) {
+@Transactional
+	public Supplier getSupplier(int supplierId) 
+	{
 		 Session session=sessionFactory.openSession();
-		 Supplier supplier=(Supplier)session.get(Supplier.class,supplierId);
+	     Supplier supplier=(Supplier)session.get(Supplier.class,supplierId);
 	     session.close();
 	     return supplier;
+		
 	}
-
-	@Override
+@Transactional
 	public boolean updateSupplier(Supplier supplier)
 	{
-		try
+		 try
 	     {
-	     sessionFactory.getCurrentSession().saveOrUpdate(supplier);
+	     sessionFactory.openSession().saveOrUpdate(supplier);
 	     return true;
 	     }
 	     catch(Exception e)
 	     {
 	     System.out.println("Exception Arised:"+e);
-	     return false;
-	     }
+		return false;
 	}
+
+	
 	
 	}
+}

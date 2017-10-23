@@ -5,17 +5,20 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import com.Dao.*;
-import com.model.*;
+
+import com.Dao.UserDao;
+import com.model.User;
+
+
 
 
 @Repository
 public class UserDaoImpl implements UserDao
 {
-
 	
-	@Autowired
-	private SessionFactory sessionFactory;
+	
+	@Autowired	
+	 SessionFactory sessionFactory;
 	
 	public UserDaoImpl(SessionFactory sessionFactory)
 	{
@@ -30,13 +33,12 @@ public class UserDaoImpl implements UserDao
 		Session session=sessionFactory.openSession();
 		session.saveOrUpdate(user);
 		Transaction tx=session.beginTransaction();
+		tx.commit();
 		return true;
 		
 		
 		
-		
 	}
-
-
-
 }
+
+

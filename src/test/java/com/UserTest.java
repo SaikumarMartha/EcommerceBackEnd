@@ -1,14 +1,14 @@
-package project.projectbackend;
+package com;
 
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
 
-import com.Dao.UserDao;
-import com.hibernateConfig.DataBaseConfig;
-
+/*@Ignore
 @ComponentScan("com.model")
+
 public class AppTest 
 {
 	@SuppressWarnings("unused")
@@ -31,4 +31,4 @@ public static void initialize()
 	
 	
 	
-}
+}*/

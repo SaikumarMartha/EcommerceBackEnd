@@ -2,17 +2,28 @@ package com.model;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.Table;
 
 @Entity
 @Table
 public class Product
 {
+
 @Id
 int productId;
+@Lob
+public byte[] image;
 String productName,productDesc;
 int stock,price,catId,supplierId;
-
+public byte[] getImage()
+{
+	return image;
+}
+public void setImage(byte[] image)
+{
+	this.image = image;
+}
 
 
 public int getProductId()

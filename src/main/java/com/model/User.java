@@ -13,7 +13,7 @@ public class User implements Serializable
 {
 public static final long serialVersionUID=1L;
 @Id
-private String name;
+private String username;
 private String email;
 private String password;
 private String contact;
@@ -23,10 +23,10 @@ private boolean enabled;
 
 
 public String getName() {
-	return name;
+	return username;
 }
 public void setName(String name) {
-	this.name = name;
+	this.username = username;
 }
 public String getEmail() {
 	return email;

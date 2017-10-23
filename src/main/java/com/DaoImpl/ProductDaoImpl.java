@@ -2,6 +2,7 @@ package com.DaoImpl;
 
 import java.util.List;
 
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +20,6 @@ public class ProductDaoImpl implements ProductDao
 	
 	
 	@Transactional
-	@Override
 	public boolean addProduct(Product product) 
 	{
 		 try
@@ -33,14 +33,16 @@ public class ProductDaoImpl implements ProductDao
 	      }
 	}
 
-	@Override
 	public List<Product> retrieveProduct()
 	{
-		// TODO Auto-generated method stub
-		return null;
+		Session session=sessionFactory.openSession();
+        Query query=session.createQuery("from Product");
+        List<Product> listProduct=query.list();
+        session.close();
+        return listProduct;
+		
 	}
 
-	@Override
 	public boolean deleteProduct(Product product)
 	{
 		 try
@@ -55,7 +57,6 @@ public class ProductDaoImpl implements ProductDao
 	     }
 	}
 
-	@Override
 	public Product getProduct(int productId) 
 	{
 		 Session session=sessionFactory.openSession();
@@ -64,7 +65,6 @@ public class ProductDaoImpl implements ProductDao
 	     return product;
 	}
 
-	@Override
 	public boolean updateProduct(Product product)
 	{
 		try
@@ -77,6 +77,12 @@ public class ProductDaoImpl implements ProductDao
 	     System.out.println("Exception Arised:"+e);
 	     return false;
 	     }
+	}
+
+	public Product getItem(int id) 
+	{
+		 Product product=sessionFactory.getCurrentSession().get(Product.class,id);
+		return null;
 	}
 
 }
