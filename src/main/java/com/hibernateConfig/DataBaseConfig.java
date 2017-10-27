@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import com.Dao.UserDao;
 import com.DaoImpl.UserDaoImpl;
 
+
 import java.util.Properties;
 import javax.sql.DataSource;
 
@@ -76,7 +77,7 @@ public UserDao getUserDao(SessionFactory sessionFactory)
 	return new UserDaoImpl(sessionFactory);
 }
 	
-	
+
 }
 
 

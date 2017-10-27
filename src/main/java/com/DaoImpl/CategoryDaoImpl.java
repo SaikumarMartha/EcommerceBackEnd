@@ -24,7 +24,7 @@ public boolean addCategory(Category category)
       {
 		  Session session = sessionFactory.getCurrentSession();
 		  System.out.println("Inside saving object");
-      session.save(category);
+      session.saveOrUpdate(category);
 
       return true;
       }
@@ -50,20 +50,7 @@ return false;
  }
  @Transactional
  
- public boolean deleteCategory(Category category)
- {
-	 try
-     {
-     sessionFactory.getCurrentSession().delete(category);
-     return true;
-     }
-     catch(Exception e)
-     {
-     System.out.println("Exception Arised:"+e);  
-     return false;
-     }
- }
- @Transactional
+ 
  
 public Category getCategory(int catId)
 {
@@ -88,6 +75,15 @@ public boolean updateCategory(Category category)
      return false;
      }
  }
+
+@Transactional
+public Category deleteCategory(int category_id) {
+	
+	 Category categoryToDelete=new Category();
+	 categoryToDelete.setCatId(category_id);
+	 sessionFactory.getCurrentSession().delete(categoryToDelete);
+	return categoryToDelete;
+}
 }
 
 

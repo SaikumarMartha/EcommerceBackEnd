@@ -1,6 +1,7 @@
 package com.model;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.Table;
@@ -11,7 +12,9 @@ public class Product
 {
 
 @Id
+@GeneratedValue
 int productId;
+
 @Lob
 public byte[] image;
 String productName,productDesc;

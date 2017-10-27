@@ -6,10 +6,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
 
-/*@Ignore
-@ComponentScan("com.model")
+import com.Dao.UserDao;
+import com.hibernateConfig.DataBaseConfig;
 
-public class AppTest 
+@Ignore
+@ComponentScan("com")
+
+public class UserTest 
 {
 	@SuppressWarnings("unused")
 	@Autowired
@@ -21,7 +24,7 @@ public class AppTest
 public static void initialize()
 {
 	AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();
-	context.scan("com.niit.*");
+	context.scan("com");
 	context.register(DataBaseConfig.class);
 	context.refresh();
 	
@@ -31,4 +34,4 @@ public static void initialize()
 	
 	
 	
-}*/
+}

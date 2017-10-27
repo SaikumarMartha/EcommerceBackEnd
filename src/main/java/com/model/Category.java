@@ -2,9 +2,11 @@ package com.model;
 
 import javax.persistence.*;
 
+import org.springframework.stereotype.Component;
+
 
 @Entity
-@Table
+@Component
 public class Category 
 {
 	

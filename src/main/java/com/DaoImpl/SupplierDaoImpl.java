@@ -28,7 +28,7 @@ public class SupplierDaoImpl implements SupplierDao
 	      {
 			  Session session = sessionFactory.getCurrentSession();
 			  System.out.println("Inside saving object");
-	      session.save(supplier);
+	      session.saveOrUpdate(supplier);
 
 	      return true;
 	      }

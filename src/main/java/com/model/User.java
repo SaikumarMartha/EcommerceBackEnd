@@ -2,18 +2,28 @@ package com.model;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 import org.springframework.stereotype.Component;
 @Entity
-@Component
+@Table
 
 public class User implements Serializable
 {
+	public User(){}
 public static final long serialVersionUID=1L;
 @Id
+@GeneratedValue
+private int id;
+
+
+
 private String username;
+
 private String email;
 private String password;
 private String contact;
@@ -22,10 +32,16 @@ private String role;
 private boolean enabled;
 
 
-public String getName() {
+public int getId() {
+	return id;
+}
+public void setId(int id) {
+	this.id = id;
+}
+public String getUsername() {
 	return username;
 }
-public void setName(String name) {
+public void setUsername(String username) {
 	this.username = username;
 }
 public String getEmail() {

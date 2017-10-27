@@ -2,6 +2,7 @@ package com.DaoImpl;
 
 import java.util.List;
 
+
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -10,13 +11,22 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.Dao.ProductDao;
-import com.model.Category;
 import com.model.Product;
+
+
+@SuppressWarnings("deprecation")
 @Repository("productDao")
 public class ProductDaoImpl implements ProductDao 
 {
 	@Autowired
     SessionFactory sessionFactory;
+	
+	 public ProductDaoImpl(SessionFactory sessionFactory)
+	  {
+		  
+		  this.sessionFactory=sessionFactory;
+	  
+	  }
 	
 	
 	@Transactional
@@ -24,7 +34,7 @@ public class ProductDaoImpl implements ProductDao
 	{
 		 try
 	      {
-	      sessionFactory.getCurrentSession().save(product);
+	      sessionFactory.getCurrentSession().saveOrUpdate(product);
 	      return true;
 	      }
 	      catch(Exception e)
@@ -32,39 +42,39 @@ public class ProductDaoImpl implements ProductDao
 	      return false;
 	      }
 	}
-
+	
+	
+	
+	@Transactional
 	public List<Product> retrieveProduct()
 	{
 		Session session=sessionFactory.openSession();
+		@SuppressWarnings("rawtypes")
         Query query=session.createQuery("from Product");
-        List<Product> listProduct=query.list();
+        @SuppressWarnings("unchecked")
+		List<Product> listProduct=query.list();
         session.close();
         return listProduct;
 		
 	}
-
-	public boolean deleteProduct(Product product)
-	{
-		 try
-	     {
-	     sessionFactory.getCurrentSession().delete(product);
-	     return true;
-	     }
-	     catch(Exception e)
-	     {
-	     System.out.println("Exception Arised:"+e);  
-	     return false;
-	     }
-	}
-
+	@Transactional
 	public Product getProduct(int productId) 
 	{
-		 Session session=sessionFactory.openSession();
-		 Product product=(Product)session.get(Product.class,productId);
-	     session.close();
-	     return product;
+	String hql="from Product where id="+productId;
+		@SuppressWarnings("rawtypes")
+		Query query=sessionFactory.getCurrentSession().createQuery(hql);
+		@SuppressWarnings("unchecked")
+		List<Product> listProduct=(List<Product>)query.list();
+		 
+		if (listProduct!=null&&!listProduct.isEmpty())
+		{
+			return listProduct.get(0);
+		}
+		return null;
 	}
-
+	
+	
+	@Transactional
 	public boolean updateProduct(Product product)
 	{
 		try
@@ -78,11 +88,23 @@ public class ProductDaoImpl implements ProductDao
 	     return false;
 	     }
 	}
-
+	
+	@Transactional
 	public Product getItem(int id) 
 	{
 		 Product product=sessionFactory.getCurrentSession().get(Product.class,id);
-		return null;
+		return product;
+	}
+	
+	
+	
+	
+	@Transactional
+	public Product deleteProduct(int productId) {
+		Product ProductToDelete = new Product();
+		ProductToDelete.setProductId(productId);
+			sessionFactory.getCurrentSession().delete(ProductToDelete);
+			return ProductToDelete;
 	}
 
 }
