@@ -1,4 +1,5 @@
 D:\DT\eclipse programing\projectbackend\src\main\java\com\Dao\ProductDao.java
+D:\DT\eclipse programing\projectbackend\src\main\java\com\DaoImpl\CartDaoImpl.java
 D:\DT\eclipse programing\projectbackend\src\main\java\project\projectbackend\App.java
 D:\DT\eclipse programing\projectbackend\src\main\java\com\DaoImpl\ProductDaoImpl.java
 D:\DT\eclipse programing\projectbackend\src\main\java\com\Dao\CategoryDao.java
@@ -8,7 +9,9 @@ D:\DT\eclipse programing\projectbackend\src\main\java\com\Dao\UserDao.java
 D:\DT\eclipse programing\projectbackend\src\main\java\com\model\User.java
 D:\DT\eclipse programing\projectbackend\src\main\java\com\DaoImpl\CategoryDaoImpl.java
 D:\DT\eclipse programing\projectbackend\src\main\java\com\DaoImpl\SupplierDaoImpl.java
+D:\DT\eclipse programing\projectbackend\src\main\java\com\model\Cart.java
 D:\DT\eclipse programing\projectbackend\src\main\java\com\hibernateConfig\DataBaseConfig.java
 D:\DT\eclipse programing\projectbackend\src\main\java\com\model\Category.java
 D:\DT\eclipse programing\projectbackend\src\main\java\com\model\Product.java
+D:\DT\eclipse programing\projectbackend\src\main\java\com\Dao\CartDao.java
 D:\DT\eclipse programing\projectbackend\src\main\java\com\model\Supplier.java

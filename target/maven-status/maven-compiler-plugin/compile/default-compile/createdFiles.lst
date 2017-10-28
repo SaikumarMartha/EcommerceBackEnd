@@ -1,9 +1,12 @@
+com\model\Cart.class
 project\projectbackend\App.class
 com\DaoImpl\SupplierDaoImpl.class
 com\model\Category.class
 com\Dao\CategoryDao.class
 com\model\Product.class
+com\Dao\CartDao.class
 com\Dao\UserDao.class
+com\DaoImpl\CartDaoImpl.class
 com\Dao\ProductDao.class
 com\DaoImpl\CategoryDaoImpl.class
 com\DaoImpl\UserDaoImpl.class

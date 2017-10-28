@@ -7,7 +7,9 @@ import org.springframework.orm.hibernate5.LocalSessionFactoryBuilder;
 import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
+import com.Dao.CartDao;
 import com.Dao.UserDao;
+import com.DaoImpl.CartDaoImpl;
 import com.DaoImpl.UserDaoImpl;
 
 
@@ -26,7 +28,7 @@ import org.springframework.jdbc.datasource.DriverManagerDataSource;
 @ComponentScan("com")
 public class DataBaseConfig 
 {
-	
+	// user Database
 	@Bean(name = "dataSource")
 	public DataSource getDataSource() {
 		DriverManagerDataSource dataSource = new DriverManagerDataSource();
@@ -49,7 +51,7 @@ public class DataBaseConfig
 		return properties;
 
 	}
-
+	//Session Factory Bean Created.
 	@Autowired
 	@Bean(name = "sessionFactory")
 	public SessionFactory getSessionFactory(DataSource dataSource) {
@@ -61,7 +63,7 @@ public class DataBaseConfig
 		return sessionBuilder.buildSessionFactory();
 		
 	}
-
+	//Transaction Bean Object
 	@Autowired
 	@Bean(name = "transactionManager")
 	public HibernateTransactionManager getTransactionManager(SessionFactory sessionFactory) {
@@ -78,74 +80,34 @@ public UserDao getUserDao(SessionFactory sessionFactory)
 }
 	
 
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	/*
-	// user Database
-@Bean(name="dataSource")
-public DataSource getH2DataSource()
-{
-	System.out.println("Hibernate is initiated");
-	DriverManagerDataSource dt=new DriverManagerDataSource();
-	dt.setDriverClassName("org.h2.Driver");
-	dt.setUrl("jdbc:h2:tcp://localhost/~/gt");
-	dt.setUsername("sa");
-	dt.setPassword("");
-	System.out.println("connection established.....");
-return dt;
-}
-
-
-//Session Factory Bean Created.
 @Autowired
-@Bean(name="sessionFactory")
-public SessionFactory getSessionFactory()
+@Bean(name = "cartDao")
+public CartDao getCartDao(SessionFactory sessionFactory)
 {
-    Properties hibernateProperties=new Properties();
-    hibernateProperties.setProperty("hibernate.hbm2ddl.auto","update");
-    hibernateProperties.put("hibernate.dialect","org.hibernate.dialect.H2Dialect");
-     
-    LocalSessionFactoryBuilder localSessionFacBuilder=new LocalSessionFactoryBuilder(getH2DataSource());
-    localSessionFacBuilder.addProperties(hibernateProperties);
-    localSessionFacBuilder.addAnnotatedClass(Category.class);
-    localSessionFacBuilder.addAnnotatedClass(User.class);
-    localSessionFacBuilder.addAnnotatedClass(Supplier.class);
-    localSessionFacBuilder.addAnnotatedClass(Product.class);
-    SessionFactory sessionFactory=localSessionFacBuilder.buildSessionFactory();
-    System.out.println("Session Factory Object Created");
-    return sessionFactory;
+
+	return new CartDaoImpl(sessionFactory);
 }
- 
-//Transaction Bean Object
-@Bean
-public HibernateTransactionManager getHibernateTransactionManager(SessionFactory sessionFactory)
-{
-    HibernateTransactionManager hibernateTranMgr=new HibernateTransactionManager(sessionFactory);
-    System.out.println("Transaction Object Created");
-    return hibernateTranMgr;
+
 }
-}
-*/
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
 
 
 
