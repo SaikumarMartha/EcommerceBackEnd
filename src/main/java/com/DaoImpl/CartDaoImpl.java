@@ -87,7 +87,7 @@ public class CartDaoImpl implements CartDao
 @Transactional
 	public Cart getCartById(int cart_id)
 	{
-		String hql = "from Cart where id=" + cart_id;
+		String hql = "from Cart where cartId=" + cart_id;
 
 		Query query = sessionFactory.getCurrentSession().createQuery(hql);
 		
@@ -110,6 +110,17 @@ public long cartsize(int userId) {
 	long count= (Long) c.uniqueResult();
 	return count;
 }
+@SuppressWarnings("deprecation")
+@Transactional
+public List<Cart> listCartbyUserId(int userId) {
+	String hql = "from"+" Cart"+" where userId=" + userId;
+
+	List<Cart> lCart = sessionFactory.getCurrentSession().createQuery(hql).list();
+	return lCart;
+}
+
+
+
 
 	
 

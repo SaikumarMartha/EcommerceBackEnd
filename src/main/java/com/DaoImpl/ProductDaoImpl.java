@@ -18,6 +18,8 @@ import com.model.Product;
 @Repository("productDao")
 public class ProductDaoImpl implements ProductDao 
 {
+	
+	
 	@Autowired
     SessionFactory sessionFactory;
 	
