@@ -17,7 +17,7 @@ import com.model.User;
 
 
 
-@Repository
+@Repository("userDao")
 public class UserDaoImpl implements UserDao
 {
 	

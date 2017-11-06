@@ -15,7 +15,7 @@ import com.Dao.SupplierDao;
 import com.model.Supplier;
 
 
-
+@Ignore
 
 public class SupplierTest
 {

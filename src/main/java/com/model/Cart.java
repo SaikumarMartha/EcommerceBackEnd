@@ -1,11 +1,15 @@
 package com.model;
 
+import java.io.Serializable;
+import java.sql.Timestamp;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 @Entity
-public class Cart
+public class Cart implements Serializable
 {
+	private static final long serialVersionUID = 1L;
  @Id
  @GeneratedValue
  private int cartId;
@@ -18,6 +22,44 @@ public class Cart
 	private double subTotal;
 	
 	private int userId;
+	
+	
+	
+	
+private Timestamp createdTimestamp;
+	
+	private String createdBy;
+	
+	private Timestamp updatedTimestamp;
+	
+	private String updatedBy;
+	
+	public Timestamp getCreatedTimestamp() {
+		return createdTimestamp;
+	}
+	public void setCreatedTimestamp(Timestamp createdTimestamp) {
+		this.createdTimestamp = createdTimestamp;
+	}
+	public String getCreatedBy() {
+		return createdBy;
+	}
+	public void setCreatedBy(String createdBy) {
+		this.createdBy = createdBy;
+	}
+	public Timestamp getUpdatedTimestamp() {
+		return updatedTimestamp;
+	}
+	public void setUpdatedTimestamp(Timestamp updatedTimestamp) {
+		this.updatedTimestamp = updatedTimestamp;
+	}
+	public String getUpdatedBy() {
+		return updatedBy;
+	}
+	public void setUpdatedBy(String updatedBy) {
+		this.updatedBy = updatedBy;
+	}
+	
+	
 	
 	public int getCartId() {
 		return cartId;

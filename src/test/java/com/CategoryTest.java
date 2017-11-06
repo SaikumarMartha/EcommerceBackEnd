@@ -16,7 +16,7 @@ import com.Dao.CategoryDao;
 import com.model.Category;
 
 
-
+@Ignore
 public class CategoryTest
 {
 @Autowired

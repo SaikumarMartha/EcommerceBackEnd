@@ -7,8 +7,10 @@ import org.springframework.orm.hibernate5.LocalSessionFactoryBuilder;
 import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
+import com.Dao.AddressDao;
 import com.Dao.CartDao;
 import com.Dao.UserDao;
+import com.DaoImpl.AddressDaoImpl;
 import com.DaoImpl.CartDaoImpl;
 import com.DaoImpl.UserDaoImpl;
 
@@ -87,7 +89,13 @@ public CartDao getCartDao(SessionFactory sessionFactory)
 
 	return new CartDaoImpl(sessionFactory);
 }
+@Autowired
+@Bean(name = "addressDao")
+public AddressDao getAddressDao(SessionFactory sessionFactory)
+{
 
+	return new AddressDaoImpl(sessionFactory);
+}
 }
 
 

@@ -25,7 +25,7 @@ import com.model.Product;
 
 
 
-
+@Ignore
 
 public class ProductTest
 
